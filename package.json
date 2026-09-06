@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Chatbot for SIH 2026",
   "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
@@ -24,6 +25,7 @@
     "body-parser": "^2.3.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "sarvamai": "^1.1.8-alpha.5",
     "twilio": "^6.1.0"
   }
 }

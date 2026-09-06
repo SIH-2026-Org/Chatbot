@@ -1,0 +1,301 @@
+/**
+ * Indian Mobile Number Prefix to State & Regional Language Mapper
+ * Based on Department of Telecommunications (DoT) LSA / Telecom Circle allocations
+ */
+
+const REGIONS = {
+  PUNJAB: {
+    state: 'Punjab',
+    circle: 'Punjab',
+    languageCode: 'pa-IN',
+    languageName: 'Punjabi',
+    scriptName: 'ਪੰਜਾਬੀ',
+  },
+  MAHARASHTRA: {
+    state: 'Maharashtra',
+    circle: 'Maharashtra & Goa',
+    languageCode: 'mr-IN',
+    languageName: 'Marathi',
+    scriptName: 'मराठी',
+  },
+  MUMBAI: {
+    state: 'Maharashtra',
+    circle: 'Mumbai',
+    languageCode: 'mr-IN',
+    languageName: 'Marathi',
+    scriptName: 'मराठी',
+  },
+  GUJARAT: {
+    state: 'Gujarat',
+    circle: 'Gujarat',
+    languageCode: 'gu-IN',
+    languageName: 'Gujarati',
+    scriptName: 'ગુજરાતી',
+  },
+  TAMIL_NADU: {
+    state: 'Tamil Nadu',
+    circle: 'Tamil Nadu & Chennai',
+    languageCode: 'ta-IN',
+    languageName: 'Tamil',
+    scriptName: 'தமிழ்',
+  },
+  ANDHRA_PRADESH: {
+    state: 'Andhra Pradesh / Telangana',
+    circle: 'Andhra Pradesh & Telangana',
+    languageCode: 'te-IN',
+    languageName: 'Telugu',
+    scriptName: 'తెలుగు',
+  },
+  KARNATAKA: {
+    state: 'Karnataka',
+    circle: 'Karnataka',
+    languageCode: 'kn-IN',
+    languageName: 'Kannada',
+    scriptName: 'ಕನ್ನಡ',
+  },
+  WEST_BENGAL: {
+    state: 'West Bengal',
+    circle: 'West Bengal & Kolkata',
+    languageCode: 'bn-IN',
+    languageName: 'Bengali',
+    scriptName: 'বাংলা',
+  },
+  KERALA: {
+    state: 'Kerala',
+    circle: 'Kerala',
+    languageCode: 'ml-IN',
+    languageName: 'Malayalam',
+    scriptName: 'മലയാളം',
+  },
+  ODISHA: {
+    state: 'Odisha',
+    circle: 'Odisha',
+    languageCode: 'od-IN',
+    languageName: 'Odia',
+    scriptName: 'ଓଡ଼ିଆ',
+  },
+  DELHI: {
+    state: 'Delhi',
+    circle: 'Delhi NCR',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+  UP_EAST: {
+    state: 'Uttar Pradesh',
+    circle: 'UP East',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+  UP_WEST: {
+    state: 'Uttar Pradesh',
+    circle: 'UP West & Uttarakhand',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+  BIHAR: {
+    state: 'Bihar / Jharkhand',
+    circle: 'Bihar & Jharkhand',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+  RAJASTHAN: {
+    state: 'Rajasthan',
+    circle: 'Rajasthan',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+  MP: {
+    state: 'Madhya Pradesh',
+    circle: 'MP & Chhattisgarh',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+  HARYANA: {
+    state: 'Haryana',
+    circle: 'Haryana',
+    languageCode: 'hi-IN',
+    languageName: 'Hindi',
+    scriptName: 'हिन्दी',
+  },
+};
+
+const DEFAULT_REGION = {
+  state: 'India',
+  circle: 'National',
+  languageCode: 'hi-IN',
+  languageName: 'Hindi',
+  scriptName: 'हिन्दी',
+};
+
+// 4-digit prefix mapping
+const PREFIX_MAP_4 = {
+  // Punjab
+  '9814': REGIONS.PUNJAB, '9815': REGIONS.PUNJAB, '9855': REGIONS.PUNJAB, '9872': REGIONS.PUNJAB,
+  '9876': REGIONS.PUNJAB, '9878': REGIONS.PUNJAB, '9888': REGIONS.PUNJAB, '9914': REGIONS.PUNJAB,
+  '9915': REGIONS.PUNJAB, '9988': REGIONS.PUNJAB, '9779': REGIONS.PUNJAB, '9780': REGIONS.PUNJAB,
+  '9781': REGIONS.PUNJAB, '9417': REGIONS.PUNJAB, '9463': REGIONS.PUNJAB, '9464': REGIONS.PUNJAB,
+  '9501': REGIONS.PUNJAB, '8146': REGIONS.PUNJAB, '8283': REGIONS.PUNJAB, '8284': REGIONS.PUNJAB,
+  '8427': REGIONS.PUNJAB, '8437': REGIONS.PUNJAB, '8558': REGIONS.PUNJAB, '8559': REGIONS.PUNJAB,
+
+  // Maharashtra & Mumbai
+  '9822': REGIONS.MAHARASHTRA, '9823': REGIONS.MAHARASHTRA, '9850': REGIONS.MAHARASHTRA, '9860': REGIONS.MAHARASHTRA,
+  '9881': REGIONS.MAHARASHTRA, '9890': REGIONS.MAHARASHTRA, '9921': REGIONS.MAHARASHTRA, '9922': REGIONS.MAHARASHTRA,
+  '9923': REGIONS.MAHARASHTRA, '9960': REGIONS.MAHARASHTRA, '9970': REGIONS.MAHARASHTRA, '9975': REGIONS.MAHARASHTRA,
+  '9422': REGIONS.MAHARASHTRA, '9423': REGIONS.MAHARASHTRA, '9762': REGIONS.MAHARASHTRA, '9763': REGIONS.MAHARASHTRA,
+  '9819': REGIONS.MUMBAI, '9820': REGIONS.MUMBAI, '9821': REGIONS.MUMBAI, '9833': REGIONS.MUMBAI,
+  '9867': REGIONS.MUMBAI, '9869': REGIONS.MUMBAI, '9870': REGIONS.MUMBAI, '9892': REGIONS.MUMBAI,
+  '9920': REGIONS.MUMBAI, '9930': REGIONS.MUMBAI, '9967': REGIONS.MUMBAI, '9969': REGIONS.MUMBAI,
+
+  // Gujarat
+  '9824': REGIONS.GUJARAT, '9825': REGIONS.GUJARAT, '9879': REGIONS.GUJARAT, '9898': REGIONS.GUJARAT,
+  '9904': REGIONS.GUJARAT, '9909': REGIONS.GUJARAT, '9913': REGIONS.GUJARAT, '9924': REGIONS.GUJARAT,
+  '9925': REGIONS.GUJARAT, '9974': REGIONS.GUJARAT, '9978': REGIONS.GUJARAT, '9979': REGIONS.GUJARAT,
+  '9998': REGIONS.GUJARAT, '9712': REGIONS.GUJARAT, '9714': REGIONS.GUJARAT, '9723': REGIONS.GUJARAT,
+  '9724': REGIONS.GUJARAT, '9725': REGIONS.GUJARAT, '9726': REGIONS.GUJARAT, '9727': REGIONS.GUJARAT,
+  '9426': REGIONS.GUJARAT, '9427': REGIONS.GUJARAT, '9428': REGIONS.GUJARAT, '9429': REGIONS.GUJARAT,
+
+  // Tamil Nadu & Chennai
+  '9840': REGIONS.TAMIL_NADU, '9841': REGIONS.TAMIL_NADU, '9842': REGIONS.TAMIL_NADU, '9843': REGIONS.TAMIL_NADU,
+  '9865': REGIONS.TAMIL_NADU, '9884': REGIONS.TAMIL_NADU, '9894': REGIONS.TAMIL_NADU, '9940': REGIONS.TAMIL_NADU,
+  '9941': REGIONS.TAMIL_NADU, '9942': REGIONS.TAMIL_NADU, '9943': REGIONS.TAMIL_NADU, '9944': REGIONS.TAMIL_NADU,
+  '9952': REGIONS.TAMIL_NADU, '9962': REGIONS.TAMIL_NADU, '9965': REGIONS.TAMIL_NADU, '9994': REGIONS.TAMIL_NADU,
+  '9442': REGIONS.TAMIL_NADU, '9443': REGIONS.TAMIL_NADU, '9444': REGIONS.TAMIL_NADU, '9445': REGIONS.TAMIL_NADU,
+
+  // Andhra Pradesh & Telangana
+  '9848': REGIONS.ANDHRA_PRADESH, '9849': REGIONS.ANDHRA_PRADESH, '9866': REGIONS.ANDHRA_PRADESH, '9885': REGIONS.ANDHRA_PRADESH,
+  '9908': REGIONS.ANDHRA_PRADESH, '9912': REGIONS.ANDHRA_PRADESH, '9948': REGIONS.ANDHRA_PRADESH, '9949': REGIONS.ANDHRA_PRADESH,
+  '9951': REGIONS.ANDHRA_PRADESH, '9959': REGIONS.ANDHRA_PRADESH, '9963': REGIONS.ANDHRA_PRADESH, '9966': REGIONS.ANDHRA_PRADESH,
+  '9440': REGIONS.ANDHRA_PRADESH, '9441': REGIONS.ANDHRA_PRADESH, '9490': REGIONS.ANDHRA_PRADESH, '9491': REGIONS.ANDHRA_PRADESH,
+
+  // Karnataka
+  '9844': REGIONS.KARNATAKA, '9845': REGIONS.KARNATAKA, '9880': REGIONS.KARNATAKA, '9886': REGIONS.KARNATAKA,
+  '9900': REGIONS.KARNATAKA, '9901': REGIONS.KARNATAKA, '9902': REGIONS.KARNATAKA, '9916': REGIONS.KARNATAKA,
+  '9945': REGIONS.KARNATAKA, '9964': REGIONS.KARNATAKA, '9972': REGIONS.KARNATAKA, '9980': REGIONS.KARNATAKA,
+  '9986': REGIONS.KARNATAKA, '9448': REGIONS.KARNATAKA, '9449': REGIONS.KARNATAKA, '9480': REGIONS.KARNATAKA,
+
+  // West Bengal & Kolkata
+  '9830': REGIONS.WEST_BENGAL, '9831': REGIONS.WEST_BENGAL, '9832': REGIONS.WEST_BENGAL, '9836': REGIONS.WEST_BENGAL,
+  '9874': REGIONS.WEST_BENGAL, '9883': REGIONS.WEST_BENGAL, '9903': REGIONS.WEST_BENGAL, '9432': REGIONS.WEST_BENGAL,
+  '9433': REGIONS.WEST_BENGAL, '9434': REGIONS.WEST_BENGAL, '9474': REGIONS.WEST_BENGAL, '9475': REGIONS.WEST_BENGAL,
+
+  // Kerala
+  '9846': REGIONS.KERALA, '9847': REGIONS.KERALA, '9895': REGIONS.KERALA, '9946': REGIONS.KERALA,
+  '9947': REGIONS.KERALA, '9961': REGIONS.KERALA, '9995': REGIONS.KERALA, '9446': REGIONS.KERALA,
+  '9447': REGIONS.KERALA, '9495': REGIONS.KERALA, '9496': REGIONS.KERALA, '9497': REGIONS.KERALA,
+
+  // Odisha
+  '9861': REGIONS.ODISHA, '9937': REGIONS.ODISHA, '9938': REGIONS.ODISHA, '9776': REGIONS.ODISHA,
+  '9777': REGIONS.ODISHA, '9778': REGIONS.ODISHA, '9437': REGIONS.ODISHA, '9438': REGIONS.ODISHA,
+
+  // Delhi NCR
+  '9810': REGIONS.DELHI, '9811': REGIONS.DELHI, '9868': REGIONS.DELHI, '9871': REGIONS.DELHI,
+  '9873': REGIONS.DELHI, '9891': REGIONS.DELHI, '9899': REGIONS.DELHI, '9910': REGIONS.DELHI,
+  '9911': REGIONS.DELHI, '9953': REGIONS.DELHI, '9958': REGIONS.DELHI, '9971': REGIONS.DELHI,
+  '9990': REGIONS.DELHI, '9999': REGIONS.DELHI,
+
+  // UP East
+  '9838': REGIONS.UP_EAST, '9839': REGIONS.UP_EAST, '9918': REGIONS.UP_EAST, '9919': REGIONS.UP_EAST,
+  '9935': REGIONS.UP_EAST, '9936': REGIONS.UP_EAST, '9956': REGIONS.UP_EAST, '9415': REGIONS.UP_EAST,
+  '9450': REGIONS.UP_EAST, '9451': REGIONS.UP_EAST, '9452': REGIONS.UP_EAST,
+
+  // UP West
+  '9837': REGIONS.UP_WEST, '9897': REGIONS.UP_WEST, '9917': REGIONS.UP_WEST, '9927': REGIONS.UP_WEST,
+  '9410': REGIONS.UP_WEST, '9411': REGIONS.UP_WEST, '9412': REGIONS.UP_WEST,
+
+  // Bihar & Jharkhand
+  '9835': REGIONS.BIHAR, '9852': REGIONS.BIHAR, '9931': REGIONS.BIHAR, '9934': REGIONS.BIHAR,
+  '9939': REGIONS.BIHAR, '9955': REGIONS.BIHAR, '9430': REGIONS.BIHAR, '9431': REGIONS.BIHAR,
+
+  // Rajasthan
+  '9828': REGIONS.RAJASTHAN, '9829': REGIONS.RAJASTHAN, '9887': REGIONS.RAJASTHAN, '9928': REGIONS.RAJASTHAN,
+  '9929': REGIONS.RAJASTHAN, '9950': REGIONS.RAJASTHAN, '9982': REGIONS.RAJASTHAN, '9983': REGIONS.RAJASTHAN,
+  '9413': REGIONS.RAJASTHAN, '9414': REGIONS.RAJASTHAN,
+
+  // MP & Chhattisgarh
+  '9826': REGIONS.MP, '9827': REGIONS.MP, '9893': REGIONS.MP, '9907': REGIONS.MP,
+  '9926': REGIONS.MP, '9977': REGIONS.MP, '9981': REGIONS.MP, '9993': REGIONS.MP,
+  '9424': REGIONS.MP, '9425': REGIONS.MP,
+
+  // Haryana
+  '9812': REGIONS.HARYANA, '9813': REGIONS.HARYANA, '9896': REGIONS.HARYANA, '9991': REGIONS.HARYANA,
+  '9992': REGIONS.HARYANA, '9996': REGIONS.HARYANA, '9416': REGIONS.HARYANA,
+
+  '9435': REGIONS.ASSAM, '9864': REGIONS.ASSAM, '9954': REGIONS.ASSAM, '9706': REGIONS.ASSAM,
+  '9436': REGIONS.NORTH_EAST, '9862': REGIONS.NORTH_EAST, '9863': REGIONS.NORTH_EAST, '9856': REGIONS.NORTH_EAST,
+  '9419': REGIONS.JAMMU_KASHMIR, '9906': REGIONS.JAMMU_KASHMIR, '9086': REGIONS.JAMMU_KASHMIR, '9797': REGIONS.JAMMU_KASHMIR,
+  '9418': REGIONS.HIMACHAL_PRADESH, '9816': REGIONS.HIMACHAL_PRADESH, '9882': REGIONS.HIMACHAL_PRADESH, '9805': REGIONS.HIMACHAL_PRADESH,
+
+  // 93-Series (Legacy Reliance/Jio) & 92-Series (Legacy Tata)
+  '9310': REGIONS.DELHI, '9311': REGIONS.DELHI, '9312': REGIONS.DELHI, '9313': REGIONS.DELHI, '9350': REGIONS.DELHI, '9212': REGIONS.DELHI,
+  '9320': REGIONS.MUMBAI, '9321': REGIONS.MUMBAI, '9322': REGIONS.MUMBAI, '9323': REGIONS.MUMBAI, '9324': REGIONS.MUMBAI, '9223': REGIONS.MUMBAI,
+  '9331': REGIONS.KOLKATA, '9332': REGIONS.KOLKATA, '9339': REGIONS.KOLKATA, '9231': REGIONS.KOLKATA,
+  '9341': REGIONS.KARNATAKA, '9342': REGIONS.KARNATAKA, '9343': REGIONS.KARNATAKA, '9243': REGIONS.KARNATAKA,
+  '9380': REGIONS.TAMIL_NADU, '9381': REGIONS.TAMIL_NADU, '9382': REGIONS.TAMIL_NADU, '9282': REGIONS.TAMIL_NADU,
+  '9346': REGIONS.ANDHRA_PRADESH, '9347': REGIONS.ANDHRA_PRADESH, '9348': REGIONS.ANDHRA_PRADESH, '9246': REGIONS.ANDHRA_PRADESH,
+
+  // Missing BSNL (94-series) blocks
+  '9420': REGIONS.MAHARASHTRA, '9421': REGIONS.MAHARASHTRA, 
+  '9439': REGIONS.ODISHA, 
+  '9470': REGIONS.BIHAR, '9471': REGIONS.BIHAR, '9472': REGIONS.BIHAR, '9473': REGIONS.BIHAR,
+
+  // 95, 96, & 97 Series Additions (Airtel, Vodafone, Idea)
+  '9711': REGIONS.DELHI, '9650': REGIONS.DELHI, '9582': REGIONS.DELHI,
+  '9769': REGIONS.MUMBAI, '9619': REGIONS.MUMBAI,
+  '9739': REGIONS.KARNATAKA, '9740': REGIONS.KARNATAKA, '9741': REGIONS.KARNATAKA, '9742': REGIONS.KARNATAKA, '9611': REGIONS.KARNATAKA,
+  '9701': REGIONS.ANDHRA_PRADESH, '9704': REGIONS.ANDHRA_PRADESH, '9705': REGIONS.ANDHRA_PRADESH, '9640': REGIONS.ANDHRA_PRADESH,
+  '9789': REGIONS.TAMIL_NADU, '9790': REGIONS.TAMIL_NADU, '9791': REGIONS.TAMIL_NADU,
+  '9623': REGIONS.MAHARASHTRA, '9764': REGIONS.MAHARASHTRA, '9765': REGIONS.MAHARASHTRA,
+  '9733': REGIONS.WEST_BENGAL, '9734': REGIONS.WEST_BENGAL, '9735': REGIONS.WEST_BENGAL,
+
+  // Major 8-Series and 7-Series Blocks (Modern Allocations)
+  '8800': REGIONS.DELHI, '8826': REGIONS.DELHI, '7838': REGIONS.DELHI,
+  '8879': REGIONS.MUMBAI, '7738': REGIONS.MUMBAI,
+  '8884': REGIONS.KARNATAKA, '8971': REGIONS.KARNATAKA, '7760': REGIONS.KARNATAKA,
+  '8939': REGIONS.TAMIL_NADU, '8754': REGIONS.TAMIL_NADU,
+  '8978': REGIONS.ANDHRA_PRADESH, '7799': REGIONS.ANDHRA_PRADESH,
+  '8983': REGIONS.MAHARASHTRA, '7774': REGIONS.MAHARASHTRA,
+  '8981': REGIONS.WEST_BENGAL, '8982': REGIONS.MP
+};
+
+/**
+ * Extracts State, Telecom Circle, and Primary Regional Language from phone number
+ * @param {string} rawPhone - Incoming phone number (e.g. "919814012345" or "9814012345")
+ * @returns {object} Region details { state, circle, languageCode, languageName, scriptName, prefix }
+ */
+function extractRegionFromPhone(rawPhone) {
+  if (!rawPhone || typeof rawPhone !== 'string') {
+    return { ...DEFAULT_REGION, prefix: 'unknown' };
+  }
+
+  // Strip non-digits and leading country code (91)
+  let cleanNumber = rawPhone.replace(/\D/g, '');
+  if (cleanNumber.startsWith('91') && cleanNumber.length === 12) {
+    cleanNumber = cleanNumber.slice(2);
+  }
+
+  // Check 5-digit prefix first (if present in custom/future maps)
+  const prefix5 = cleanNumber.slice(0, 5);
+  // Check 4-digit prefix
+  const prefix4 = cleanNumber.slice(0, 4);
+
+  const matched = PREFIX_MAP_4[prefix4] || DEFAULT_REGION;
+
+  return {
+    ...matched,
+    prefix: prefix4,
+    mobileNumber: cleanNumber,
+  };
+}
+
+export {
+  extractRegionFromPhone,
+  REGIONS,
+  DEFAULT_REGION,
+};
+

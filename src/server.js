@@ -1,5 +1,5 @@
-const app = require('./app');
-const config = require('./config/env');
+import app from './app.js';
+import config from './config/env.js';
 
 const server = app.listen(config.PORT, () => {
   console.log(`=========================================`);
@@ -9,4 +9,4 @@ const server = app.listen(config.PORT, () => {
   console.log(`=========================================`);
 });
 
-module.exports = server;
+export default server;

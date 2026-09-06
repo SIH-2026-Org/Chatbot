@@ -1,5 +1,5 @@
-const crypto = require('crypto');
-const config = require('../config/env');
+import crypto from 'crypto';
+import config from '../config/env.js';
 
 /**
  * Validates Meta webhook payload using HMAC-SHA256 signature
@@ -47,4 +47,5 @@ function verifySignature(req, res, next) {
   }
 }
 
-module.exports = verifySignature;
+export default verifySignature;
+export { verifySignature };
